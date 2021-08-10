@@ -4,14 +4,14 @@ const conexion = require('../database/db');
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'negaxis321@gmail.com',
-      pass: 'Kzhp5frp@3922598'
+      user: '******',
+      pass: '*******'
     }
   });
 
 var mailOptions = {
-    from: 'negaxis321@gmail.com',
-    to: 'negaxis321@gmail.com',
+    from: '******',
+    to: '********',
     subject: 'Mensaje de prueba',
     text: 'Este mensaje fue enviado automaticamente, usando NodeJS'
 };
