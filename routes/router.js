@@ -12,13 +12,13 @@ router.get('/get-record/:idRaspi?', registro.mostrar_actual);
 //Rutas prediccion
 const prediccion = require('../controllers/prediccion');
 router.get('/prediccion/:modelo?',prediccion.prediccion);
-router.get('/prueba',prediccion.prueba);
 
 //Rutas clima
 const clima = require('../controllers/clima');
 router.get('/clima', clima.obtener_clima);
 router.get('/climas-total', clima.obtener_climas);
 router.get('/clima-hoy/:tiempo?', clima.obtener_hoy);
+router.get('/clima-comparacion',clima.obtener_comparacion);
 
 
 module.exports = router;
