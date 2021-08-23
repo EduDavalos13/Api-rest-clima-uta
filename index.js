@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const moment = require('moment');
 
-const timer = require('./timers/clima');
+//const timer = require('./timers/clima');
 //const correo = require('./timers/correo');
 
 const app = express();

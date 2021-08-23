@@ -1,8 +1,25 @@
 const conexion = require('../database/db');
 
 exports.prediccion = (req, res) =>{
-    var modelo = req.params.modelo;
-    conexion.query('SELECT * FROM '+ modelo +'Predictions ORDER BY id DESC LIMIT 72;', (error, result) => {
+    let modelo = req.params.modelo;
+    if(modelo == undefined){
+        modelo = "predictions";
+    }
+    conexion.query('SELECT * FROM '+ modelo +' ORDER BY id DESC LIMIT 72;', (error, result) => {
+        if(error){
+            throw error;
+        }else {
+            res.send(result);
+        }
+    });
+}
+
+exports.prediccion_total = (req, res) =>{
+    let modelo = req.params.modelo;
+    if(modelo == undefined){
+        modelo = "predictions";
+    }
+    conexion.query('SELECT * FROM '+ modelo, (error, result) => {
         if(error){
             throw error;
         }else {
@@ -19,7 +36,6 @@ exports.prueba = (req,res) => {
             throw error;
         }else {
             var fecha = result[0].fecha  + ' 21:00:00';
-            console.log(fecha);
             conexion.query('select * from weather where CREATED between "'+ fecha +'" and now() order by ID asc;', (error,result) => {
                 if(error){
                     throw error;
