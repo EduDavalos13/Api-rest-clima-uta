@@ -72,5 +72,5 @@ function correos(){
 
 correos();
 enable();
-setInterval(correos,1000*10);
+setInterval(correos,1000*60*60);
 
