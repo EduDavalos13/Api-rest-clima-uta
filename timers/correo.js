@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport({
       user: '*********',
       pass: '********'
     }
-  });
+});
 
 var mailOptions = {
     from: '********',
@@ -38,21 +38,22 @@ function correos(){
                 
                 if(result.length == 0 && hora >= 7 && disponible[i] == true){
                     mailOptions.text = "El sensor " + i + " se encuentra apagado";
+                    mailOptions.subject = "Falla sensor " + i;
                     switch(i){
                         case 11:
-                            mailOptions.subject = "Falla sensor " + i;
+                            mailOptions.to = "jdiazr@academicos.uta.cl"
                             disponible[i] = false;
                             break;
                         case 12:
-                            mailOptions.subject = "Falla sensor " + i;
+                            mailOptions.to = "jdiazr@academicos.uta.cl"
                             disponible[i] = false;
                             break;
                         case 13:
-                            mailOptions.subject = "Falla sensor " + i;
+                            mailOptions.to = "fsantiago@academicos.uta.cl"
                             disponible[i] = false;
                             break;
                         case 14:
-                            mailOptions.subject = "Falla sensor " + i;
+                            mailOptions.to = "mpinto@academicos.uta.cl"
                             disponible[i] = false;
                             break;
                     }
