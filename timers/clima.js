@@ -17,6 +17,4 @@ function getPromClima(){
     });
 }
 
-getPromClima();
-
 setInterval(getPromClima,1000*60*60);

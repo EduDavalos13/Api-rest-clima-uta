@@ -18,7 +18,7 @@ router.get('/prediccion-total/:modelo?', prediccion.prediccion_total);
 const clima = require('../controllers/clima');
 router.get('/clima', clima.obtener_clima);
 router.get('/climas-total', clima.obtener_climas);
-router.get('/clima-hoy/:tiempo?', clima.obtener_hoy);
+router.get('/clima-hoy', clima.obtener_hoy);
 router.get('/clima-comparacion',clima.obtener_comparacion);
 
 
