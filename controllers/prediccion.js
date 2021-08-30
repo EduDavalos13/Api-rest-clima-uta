@@ -15,7 +15,7 @@ exports.prediccion = (req, res) =>{
 }
 
 exports.prediccion_total = (req, res) =>{
-    let modelo = req.params.modelo;
+    let modelo = req.params.model;
     if(modelo == undefined){
         modelo = "predictions";
     }
