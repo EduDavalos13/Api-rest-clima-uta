@@ -6,10 +6,9 @@ function getPromClima(){
         if(error){
             throw error;
         }else{
-            
-            Temperatura = Math.round(result[0].Temperatura);
-            Presion = Math.round(result[0].Presion);
-            Humedad = Math.round(result[0].Humedad);
+            Temperatura = (Math.round(result[0].Temperatura * 100) / 100).toFixed(2);
+            Presion = (Math.round(result[0].Presion * 100) / 100).toFixed(2);
+            Humedad = (Math.round(result[0].Humedad * 100) / 100).toFixed(2);
             console.log(Temperatura, Presion, Humedad);
 
             conexion.query('INSERT INTO weather (AMBIENT_TEMPERATURE, AIR_PRESSURE, HUMIDITY) VALUES ('+ Temperatura +', '+ Presion +', '+ Humedad +');');
