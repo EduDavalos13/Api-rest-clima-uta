@@ -12,7 +12,7 @@ router.get('/get-record/:idRaspi?', registro.mostrar_actual);
 //Rutas prediccion
 const prediccion = require('../controllers/prediccion');
 router.get('/prediccion/:modelo?',prediccion.prediccion);
-router.get('/prediccion-total/:model?', prediccion.prediccion_total);
+router.get('/prediccion-total/:modelo?', prediccion.prediccion_total);
 
 //Rutas clima
 const clima = require('../controllers/clima');
