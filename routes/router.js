@@ -21,5 +21,4 @@ router.get('/climas-total', clima.obtener_climas);
 router.get('/clima-hoy', clima.obtener_hoy);
 router.get('/clima-comparacion',clima.obtener_comparacion);
 
-
 module.exports = router;

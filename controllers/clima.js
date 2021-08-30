@@ -35,6 +35,7 @@ exports.obtener_comparacion = (req,res) => {
         if(error){
             throw error;
         }else {
+            
             var fecha = result[0].fecha  + ' 21:00:00';
             conexion.query('select * from weather where CREATED between "'+ fecha +'" and now() order by ID asc;', (error,result) => {
                 if(error){

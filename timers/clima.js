@@ -6,6 +6,7 @@ function getPromClima(){
         if(error){
             throw error;
         }else{
+            
             Temperatura = Math.round(result[0].Temperatura);
             Presion = Math.round(result[0].Presion);
             Humedad = Math.round(result[0].Humedad);
