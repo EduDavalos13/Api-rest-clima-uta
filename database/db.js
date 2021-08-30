@@ -10,7 +10,6 @@ const conexion = mysql.createConnection({
     
     //Trabajo remoto
     
-    
 });
 
 conexion.connect((error) => {
