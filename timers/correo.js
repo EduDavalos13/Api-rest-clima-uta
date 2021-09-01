@@ -6,15 +6,15 @@ var disponible = [];
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: '*********',
-      pass: '********'
+      user: 'clima.uta.iqq@gmail.com',
+      pass: 'Adminclima2021!'
     }
 });
 
 
 var mailOptions = {
-    from: '********',
-    to: '*********',
+    from: 'clima.uta.iqq@gmail.com',
+    to: 'clima.uta.iqq@gmail.com',
     subject: 'Mensaje de prueba',
     text: 'Este mensaje fue enviado automaticamente, usando NodeJS'
 };
@@ -42,19 +42,23 @@ function correos(){
                     mailOptions.subject = "Falla sensor " + i;
                     switch(i){
                         case 11:
-                            mailOptions.to = "jdiazr@academicos.uta.cl"
+                            //mailOptions.to = "jdiazr@academicos.uta.cl";
+                            mailOptions.to = "negaxis321@gmail.com";
                             disponible[i] = false;
                             break;
                         case 12:
-                            mailOptions.to = "jdiazr@academicos.uta.cl"
+                            //mailOptions.to = "jdiazr@academicos.uta.cl";
+                            mailOptions.to = "negaxis321@gmail.com";
                             disponible[i] = false;
                             break;
                         case 13:
-                            mailOptions.to = "fsantiago@academicos.uta.cl"
+                            //mailOptions.to = "fsantiago@academicos.uta.cl";
+                            mailOptions.to = "negaxis321@gmail.com";
                             disponible[i] = false;
                             break;
                         case 14:
-                            mailOptions.to = "mpinto@academicos.uta.cl"
+                            //mailOptions.to = "mpinto@academicos.uta.cl";
+                            mailOptions.to = "negaxis321@gmail.com";
                             disponible[i] = false;
                             break;
                     }
