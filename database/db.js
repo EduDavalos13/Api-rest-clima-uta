@@ -9,8 +9,6 @@ const conexion = mysql.createConnection({
     database: "clima_utaa"*/
     
     //Trabajo remoto
-       
-
     
 });
 
