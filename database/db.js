@@ -9,7 +9,12 @@ const conexion = mysql.createConnection({
     database: "clima_utaa"*/
     
     //Trabajo remoto
-    
+    host: "192.168.50.176",
+    user: "admin_mysql",
+    password: "Climauta12",
+    database: "weather",
+    port: 3306,
+    dateStrings: true
 });
 
 conexion.connect((error) => {
