@@ -3,15 +3,20 @@ const conexion = require('../database/db');
 
 var disponible = [];
 
+/**
+ * Configuracion del correo el cual envia las notificaciones.
+ */
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'clima.uta.iqq@gmail.com',
-      pass: 'Adminclima2021!'
+      user: '****************',
+      pass: '**********'
     }
 });
 
-
+/**
+ * Configuracion por defecto del contenido y emisor del mensaje.
+ */
 var mailOptions = {
     from: 'clima.uta.iqq@gmail.com',
     to: 'clima.uta.iqq@gmail.com',
@@ -19,12 +24,24 @@ var mailOptions = {
     text: 'Este mensaje fue enviado automaticamente, usando NodeJS'
 };
 
+
+/**
+ * Establece como disponible todos los correos para asi poder enviar su notificacion.
+ * A lo largo del codigo estos se colocan en false para si no notificar dos veces seguidas de
+ * la caida de algun sensor.
+ */
 function enable(){
     for(let i = 11; i <= 14; i++){
         disponible[i] = true;
     }
 }
 
+/**
+ * Cada una hora consulta por el ultimo regstro de cada sensor, si este da una respuesta vacia,
+ * procee a enviar la notificacion al respectivo supervisor del supervisor.
+ * La funcion no funciona en el intervalo de las 00:00 - 07:00 hrs, para evitar molestias a altas 
+ * horas de la noche.
+ */
 function correos(){
     var hora = new Date().getHours();
     for(let i = 11; i < 15; i++){
@@ -41,24 +58,25 @@ function correos(){
                     mailOptions.text = "El sensor " + i + " se encuentra apagado";
                     mailOptions.subject = "Falla sensor " + i;
                     switch(i){
+                        /**
+                         * En caso de querer cambiar los correos donde llegan las notificacions
+                         * se deberan cambiar cada uno de los listados aqui abajo, dependiendo del encargado
+                         * de cada sensor.
+                         */
                         case 11:
-                            //mailOptions.to = "jdiazr@academicos.uta.cl";
-                            mailOptions.to = "negaxis321@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 12:
-                            //mailOptions.to = "jdiazr@academicos.uta.cl";
-                            mailOptions.to = "negaxis321@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 13:
-                            //mailOptions.to = "fsantiago@academicos.uta.cl";
-                            mailOptions.to = "negaxis321@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 14:
-                            //mailOptions.to = "mpinto@academicos.uta.cl";
-                            mailOptions.to = "negaxis321@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                     }
@@ -78,5 +96,10 @@ function correos(){
 
 correos();
 enable();
+/**
+ * En caso de querer cambiar el intervalo de notificacion, se debera cambiar el valor aqui abajo.
+ * Recordar que se mide en "ms", por lo cual un segundo equivale a 1000ms
+ * Establecido por defecto cada una hora.
+ */
 setInterval(correos,1000*60*60);
 

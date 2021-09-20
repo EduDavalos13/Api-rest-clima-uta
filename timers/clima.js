@@ -1,5 +1,7 @@
 const conexion = require('../database/db');
-
+/**
+ * Obtiene y registra el promedio del clima obteniido por los distintos sensores activos en un periodo de una hora.
+ */
 function getPromClima(){
     
     conexion.query('SELECT AVG(AMBIENT_TEMPERATURE) as Temperatura, AVG(AIR_PRESSURE) as Presion, AVG(HUMIDITY) as Humedad FROM  WEATHER_MEASUREMENT WHERE serverDate > now() - interval 1 hour ORDER BY ID;', (error, result) => {
