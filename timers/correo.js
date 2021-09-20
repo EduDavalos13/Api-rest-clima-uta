@@ -9,8 +9,8 @@ var disponible = [];
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: '****************',
-      pass: '**********'
+      user: '',
+      pass: ''
     }
 });
 
