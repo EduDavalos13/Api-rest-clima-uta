@@ -18,8 +18,8 @@ var transporter = nodemailer.createTransport({
  * Configuracion por defecto del contenido y emisor del mensaje.
  */
 var mailOptions = {
-    from: 'clima.uta.iqq@gmail.com',
-    to: 'clima.uta.iqq@gmail.com',
+    from: '',
+    to: '',
     subject: 'Mensaje de prueba',
     text: 'Este mensaje fue enviado automaticamente, usando NodeJS'
 };
@@ -44,6 +44,8 @@ function enable(){
  */
 function correos(){
     var hora = new Date().getHours();
+    var tiempo_caida;
+    //var tiempo_caida;
     for(let i = 11; i < 15; i++){
         conexion.query('SELECT * FROM  WEATHER_MEASUREMENT WHERE REMOTE_ID ='+ i +' AND serverDate > now() - interval 1 hour ORDER BY ID DESC LIMIT 1;', (error, result) => {
             if(error){
@@ -55,8 +57,15 @@ function correos(){
                 }
                 
                 if(result.length == 0 && hora >= 7 && disponible[i] == true){
-                    mailOptions.text = "El sensor " + i + " se encuentra apagado";
-                    mailOptions.subject = "Falla sensor " + i;
+                    conexion.query('SELECT serverDate FROM  WEATHER_MEASUREMENT WHERE REMOTE_ID ='+ i +' ORDER BY ID DESC LIMIT 1;',(error, result) => {
+                        if(error){
+                            throw error;
+                        }else{
+                            //console.log(Object.values(result));
+                            tiempo_caida = result[0].serverDate;
+                            mailOptions.text = "El ultimo registro del sensor " + i + " fue el " + tiempo_caida;
+                            //console.log(mailOptions.text);
+                            mailOptions.subject = "Sensor " + i + " apagado";
                     switch(i){
                         /**
                          * En caso de querer cambiar los correos donde llegan las notificacions
@@ -64,19 +73,19 @@ function correos(){
                          * de cada sensor.
                          */
                         case 11:
-                            mailOptions.to = "clima.uta.iqq@gmail.com";
+                            //mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 12:
-                            mailOptions.to = "clima.uta.iqq@gmail.com";
+                            //mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 13:
-                            mailOptions.to = "clima.uta.iqq@gmail.com";
+                            //mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 14:
-                            mailOptions.to = "clima.uta.iqq@gmail.com";
+                            //mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                     }
@@ -87,7 +96,12 @@ function correos(){
                         } else {
                           console.log('Email sent: ' + info.response);
                         }
-                    }); 
+                    });
+                        }
+                    });
+                    mailOptions.text = "El ultimo registro del sensor " + i + " fue el " + tiempo_caida;
+                    //console.log(mailOptions.text);
+                    
                 }
             }
         });
