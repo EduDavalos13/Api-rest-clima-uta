@@ -85,7 +85,7 @@ function correos(){
                             disponible[i] = false;
                             break;
                         case 14:
-                            //mailOptions.to = "clima.uta.iqq@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                     }
