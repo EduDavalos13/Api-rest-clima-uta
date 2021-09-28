@@ -9,7 +9,7 @@ var disponible = [];
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: '',
+      user: 'clima.uta.iqq@gmail.com',
       pass: ''
     }
 });
@@ -18,8 +18,8 @@ var transporter = nodemailer.createTransport({
  * Configuracion por defecto del contenido y emisor del mensaje.
  */
 var mailOptions = {
-    from: '',
-    to: '',
+    from: 'clima.uta.iqq@gmail.com',
+    to: 'clima.uta.iqq@gmail.com',
     subject: 'Mensaje de prueba',
     text: 'Este mensaje fue enviado automaticamente, usando NodeJS'
 };
@@ -73,15 +73,15 @@ function correos(){
                          * de cada sensor.
                          */
                         case 11:
-                            //mailOptions.to = "clima.uta.iqq@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 12:
-                            //mailOptions.to = "clima.uta.iqq@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 13:
-                            //mailOptions.to = "clima.uta.iqq@gmail.com";
+                            mailOptions.to = "clima.uta.iqq@gmail.com";
                             disponible[i] = false;
                             break;
                         case 14:
